@@ -1,0 +1,75 @@
+name: UiPath connector plugin
+rundeckPluginVersion: 1.2
+author: Chris Gadd
+date: 2024-06-13
+version: 0.1
+url: https://github.com/gaddman/rundeck-uipath-plugin
+providers:
+    - name: uipath-job-start
+      service: WorkflowStep
+      title: UiPath / Job Start
+      description: Start a job in UiPath
+      plugin-type: script
+      script-file: jobs.py
+      config:
+        - name: releaseKey
+          title: Release key
+          description: The unique key of the release associated with the process.
+          type: String
+          required: true
+        - name: folder
+          title: Folder path
+          description: Provide this or the organization ID.
+          type: String
+          required: false
+        - name: orgid
+          title: Organization ID
+          description: Provide this or the folder.
+          type: String
+          required: false
+        - name: robot
+          title: Robot user name
+          type: String
+          required: true
+        - name: machine
+          title: Machine name
+          type: String
+          required: true
+        - name: arguments
+          title: Input arguments
+          description: JSON formatted string to be passed to the job execution.
+          type: String
+          required: false
+        - name: url
+          title: UiPath URL
+          description: URL for your UiPath instance, including the scheme (eg https://).
+          type: String
+          required: true
+          scope: Project
+        - name: tenancy
+          title: Tenancy
+          description: Tenancy name.
+          type: String
+          required: true
+          scope: Project
+        - name: username
+          title: Username
+          type: String
+          required: true
+          scope: Project
+        - name: password_storage_path
+          title: Password storage path
+          description: Key storage location of the password.
+          type: String
+          renderingOptions:
+            selectionAccessor: STORAGE_PATH
+            valueConversion: STORAGE_PATH_AUTOMATIC_READ
+            storage-file-meta-filter: Rundeck-data-type=password
+          required: true
+          scope: Project
+        - name: proxy
+          title: Proxy
+          type: String
+          description: Proxy address in format `http://myproxy:8080`.
+          required: false
+          scope: Project
