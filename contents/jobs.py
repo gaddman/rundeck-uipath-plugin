@@ -70,12 +70,14 @@ class UiPath():
         "ResumeOnSameContext": False,
         "RuntimeType": "Unattended",
         "InputArguments": arguments,
-        "MachineRobots": [{
-          "RobotUserName": robot,
-          "MachineName": machine
-        }]
       }
     }
+    if machine and robot:
+      data["startInfo"]["MachineRobots"] = [{
+        "RobotUserName": robot,
+        "MachineName": machine
+      }]
+
     logging.debug(data)
     response = self.session.post(url, headers=headers, json=data)
     if not response.ok:

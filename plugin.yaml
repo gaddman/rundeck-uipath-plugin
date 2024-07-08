@@ -30,11 +30,13 @@ providers:
         - name: robot
           title: Robot user name
           type: String
-          required: true
+          description: Optional robot user name. Provide the machine name as well if including this.
+          required: false
         - name: machine
           title: Machine name
+          description: Optional machine name. Provide the robot user name as well if including this.
           type: String
-          required: true
+          required: false
         - name: arguments
           title: Input arguments
           description: JSON formatted string to be passed to the job execution.
